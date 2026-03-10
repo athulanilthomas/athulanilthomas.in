@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/athulanilthomas/www/api/internal/config"
+	"github.com/zmb3/spotify/v2"
 	"golang.org/x/oauth2"
 
-	spotify "github.com/zmb3/spotify/v2"
 	spotifyauth "github.com/zmb3/spotify/v2/auth"
 )
 
