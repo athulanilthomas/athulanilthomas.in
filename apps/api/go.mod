@@ -4,8 +4,10 @@ go 1.25.5
 
 require (
 	github.com/joho/godotenv v1.5.1
+	github.com/panjf2000/ants/v2 v2.11.6
 	github.com/zmb3/spotify/v2 v2.4.3
 	golang.org/x/oauth2 v0.0.0-20210810183815-faf39c7919d5
+	golang.org/x/sync v0.20.0
 )
 
 require (
