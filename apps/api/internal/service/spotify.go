@@ -21,6 +21,7 @@ type Service struct {
 	pool   *ants.PoolWithFunc
 	group  singleflight.Group
 	cache  cache
+	mux    sync.RWMutex
 }
 
 type job struct {
@@ -30,12 +31,23 @@ type job struct {
 }
 
 func NewService(client *spotify.Client) (*Service, error) {
+	svc := &Service{
+		client: client,
+		group:  singleflight.Group{},
+		cache:  cache{},
+	}
+
 	pool, err := ants.NewPoolWithFunc(10, func(payload any) {
 		job := payload.(*job)
-		if c, err := client.PlayerCurrentlyPlaying(job.ctx); err != nil {
+
+		svc.mux.RLock()
+		c := svc.client
+		svc.mux.RUnlock()
+
+		if result, err := c.PlayerCurrentlyPlaying(job.ctx); err != nil {
 			job.err <- err
 		} else {
-			job.result <- c
+			job.result <- result
 		}
 	})
 
@@ -43,12 +55,9 @@ func NewService(client *spotify.Client) (*Service, error) {
 		return nil, err
 	}
 
-	return &Service{
-		pool:   pool,
-		client: client,
-		group:  singleflight.Group{},
-		cache:  cache{},
-	}, nil
+	svc.pool = pool
+
+	return svc, nil
 }
 
 func (s *Service) GetCurrentlyPlaying(ctx context.Context) (*spotify.CurrentlyPlaying, error) {
@@ -89,4 +98,10 @@ func (s *Service) GetCurrentlyPlaying(ctx context.Context) (*spotify.CurrentlyPl
 	}
 
 	return res.(*spotify.CurrentlyPlaying), nil
+}
+
+func (s *Service) SetClient(client *spotify.Client) {
+	s.mux.Lock()
+	s.client = client
+	s.mux.Unlock()
 }

@@ -7,15 +7,15 @@ import (
 	"net/http"
 )
 
-type Handler struct {
+type SpotifyHandler struct {
 	service *service.Service
 }
 
-func NewHandler(service *service.Service) *Handler {
-	return &Handler{service: service}
+func NewHandler(service *service.Service) *SpotifyHandler {
+	return &SpotifyHandler{service: service}
 }
 
-func (h *Handler) GetCurrentlyPlaying(c *gin.Context) {
+func (h *SpotifyHandler) GetCurrentlyPlaying(c *gin.Context) {
 	currentlyPlaying, err := h.service.GetCurrentlyPlaying(c.Request.Context())
 
 	if err != nil {
