@@ -11,7 +11,7 @@ type SpotifyHandler struct {
 	service *service.Service
 }
 
-func NewHandler(service *service.Service) *SpotifyHandler {
+func NewSpotifyHandler(service *service.Service) *SpotifyHandler {
 	return &SpotifyHandler{service: service}
 }
 
