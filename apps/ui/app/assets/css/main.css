@@ -16,3 +16,21 @@
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
 }
+
+@layer utilities {
+  .bg-glass {
+    @apply bg-white/70 dark:bg-slate-900/70;
+  }
+
+  .border-glass-border {
+    @apply border-white/20 dark:border-white/10;
+  }
+
+  .shadow-glass {
+    @apply shadow-lg shadow-white/5;
+  }
+
+  .shadow-glass-pill {
+    @apply shadow-md shadow-white/10;
+  }
+}

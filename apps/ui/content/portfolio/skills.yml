@@ -1,0 +1,29 @@
+type: skills
+title: Skills
+id: skills
+maxYears: 5
+skills:
+  - id: "1"
+    title: Vue.js
+    yearsOfExperience: 5
+    logoUrl: ""
+  - id: "2"
+    title: TypeScript
+    yearsOfExperience: 4
+    logoUrl: ""
+  - id: "3"
+    title: Node.js
+    yearsOfExperience: 4
+    logoUrl: ""
+  - id: "4"
+    title: React
+    yearsOfExperience: 3
+    logoUrl: ""
+  - id: "5"
+    title: Tailwind CSS
+    yearsOfExperience: 3
+    logoUrl: ""
+  - id: "6"
+    title: PostgreSQL
+    yearsOfExperience: 4
+    logoUrl: ""

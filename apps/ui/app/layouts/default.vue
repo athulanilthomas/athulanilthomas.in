@@ -1,22 +1,15 @@
 <template>
-  <div class="ui-aurora-container">
-    <BackgroundAurora
-      :color-stops="['#00DC82', '#00DC82', '#020420', '#00DC82']"
-      :amplitude="1"
-      :blend="0.5"
-      :speed="1.0"
-      :intensity="1.0"
-      class="w-full h-full"
-    />
-    <slot />
+  <div class="relative flex gap-2 w-full max-w-6xl h-[100vh] sm:h-[85vh] sm:max-h-[900px] sm:bg-glass sm:border border-glass-border rounded-2xl sm:shadow-glass overflow-hidden p-2 sm:p-4">
+    <LayoutSidebar />
+    <div class="flex-1 flex flex-col min-w-0 gap-2 max-h-full">
+      <div
+        class="bg-glass border border-glass-border rounded-2xl shadow-glass backdrop-blur-[40px] backdrop-saturate-150 flex-1 flex flex-col min-w-0 overflow-auto"
+      >
+        <div class="flex-1 p-4 sm:p-6 origin-center overflow-y-auto">
+          <slot />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>
-  .ui-aurora-container {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-  }
-</style>

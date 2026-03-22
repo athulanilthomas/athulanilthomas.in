@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 
   vite: {
     optimizeDeps: {
-      include: ['ogl']
+      include: ['ogl', 'three']
     }
   },
 

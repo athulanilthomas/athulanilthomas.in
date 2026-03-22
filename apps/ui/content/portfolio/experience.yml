@@ -1,0 +1,18 @@
+type: experience
+title: Experience
+id: experience
+experiences:
+  - id: "1"
+    company: Tech Company Inc
+    position: Senior Frontend Engineer
+    location: San Francisco, CA
+    startDate: "2022-01-01"
+    endDate: null
+    logoUrl: ""
+  - id: "2"
+    company: Startup XYZ
+    position: Full Stack Developer
+    location: Remote
+    startDate: "2020-06-15"
+    endDate: "2021-12-31"
+    logoUrl: ""

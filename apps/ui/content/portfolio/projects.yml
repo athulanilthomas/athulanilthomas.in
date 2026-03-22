@@ -1,0 +1,28 @@
+type: projects
+title: Projects
+id: projects
+repositories:
+  - id: "1"
+    nameWithOwner: johndev/awesome-project
+    description: An amazing open source project built with Vue and Node
+    url: https://github.com/johndev/awesome-project
+    stargazerCount: 342
+    primaryLanguage: TypeScript
+    ownerAvatarUrl: ""
+    isOwned: true
+  - id: "2"
+    nameWithOwner: johndev/web-utils
+    description: Utility library for common web development tasks
+    url: https://github.com/johndev/web-utils
+    stargazerCount: 128
+    primaryLanguage: JavaScript
+    ownerAvatarUrl: ""
+    isOwned: true
+  - id: "3"
+    nameWithOwner: popular-lib/popular-lib
+    description: I contributed to this popular library
+    url: https://github.com/popular-lib/popular-lib
+    stargazerCount: 5300
+    primaryLanguage: TypeScript
+    ownerAvatarUrl: ""
+    isOwned: false
