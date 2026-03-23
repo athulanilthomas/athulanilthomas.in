@@ -16,8 +16,9 @@ type GithubToken struct {
 func NewGithubToken(cfg *config.Config) (*GithubToken, error) {
 	clientID := cfg.GithubAppClientId
 	privateKey := cfg.GithubAppPrivateKey
+	installationID := cfg.GithubAppInstallationId
 
-	tokenSource, err := githubauth.NewApplicationTokenSource(
+	appTokenSource, err := githubauth.NewApplicationTokenSource(
 		clientID,
 		privateKey,
 		githubauth.WithApplicationTokenExpiration(5*time.Minute),
@@ -27,5 +28,7 @@ func NewGithubToken(cfg *config.Config) (*GithubToken, error) {
 		return nil, err
 	}
 
-	return &GithubToken{source: &tokenSource}, nil
+	installationTokenSource := githubauth.NewInstallationTokenSource(installationID, appTokenSource)
+
+	return &GithubToken{source: &installationTokenSource}, nil
 }
