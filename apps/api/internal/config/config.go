@@ -44,7 +44,7 @@ func NewConfig() (*Config, error) {
 	}
 
 	if config.GithubAppClientId == "" || string(config.GithubAppPrivateKey) == "" {
-		return nil, fmt.Errorf("Missing required github credentials in environment")
+		return nil, fmt.Errorf("Missing required Github credentials in environment")
 	}
 
 	if config.SpotifyClientID == "" || config.SpotifyClientSecret == "" {
