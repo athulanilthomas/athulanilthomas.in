@@ -10,7 +10,7 @@ import (
 )
 
 type GithubToken struct {
-	source *oauth2.TokenSource
+	source oauth2.TokenSource
 }
 
 func NewGithubToken(cfg *config.Config) (*GithubToken, error) {
@@ -30,5 +30,5 @@ func NewGithubToken(cfg *config.Config) (*GithubToken, error) {
 
 	installationTokenSource := githubauth.NewInstallationTokenSource(installationID, appTokenSource)
 
-	return &GithubToken{source: &installationTokenSource}, nil
+	return &GithubToken{source: installationTokenSource}, nil
 }
