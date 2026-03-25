@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/athulanilthomas/www/api/internal/handler/dto"
 	"github.com/athulanilthomas/www/api/internal/service"
 	"github.com/gin-gonic/gin"
 
@@ -23,5 +24,5 @@ func (h *GithubHandler) GetLastUpdatedRepositories(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, repos)
+	c.JSON(http.StatusOK, dto.ToRepoDTOs(repos))
 }
