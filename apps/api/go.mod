@@ -3,10 +3,12 @@ module github.com/athulanilthomas/www/api
 go 1.25.5
 
 require (
+	github.com/google/go-github v17.0.0+incompatible
+	github.com/jferrl/go-githubauth v1.5.1
 	github.com/joho/godotenv v1.5.1
 	github.com/panjf2000/ants/v2 v2.11.6
 	github.com/zmb3/spotify/v2 v2.4.3
-	golang.org/x/oauth2 v0.0.0-20210810183815-faf39c7919d5
+	golang.org/x/oauth2 v0.34.0
 	golang.org/x/sync v0.20.0
 )
 
@@ -22,6 +24,8 @@ require (
 	github.com/go-playground/validator/v10 v10.30.1 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/goccy/go-yaml v1.19.2 // indirect
+	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
+	github.com/google/go-querystring v1.2.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
@@ -44,10 +48,8 @@ require (
 
 require (
 	github.com/gin-gonic/gin v1.12.0
-	github.com/golang/protobuf v1.5.2 // indirect
 	go.uber.org/fx v1.24.0
 	golang.org/x/net v0.51.0 // indirect
 	golang.org/x/sys v0.41.0 // indirect
-	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.36.10 // indirect
 )

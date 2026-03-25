@@ -5,10 +5,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterRoutes(router *gin.Engine, spotifyHandler *handler.SpotifyHandler, authHandler *handler.AuthHandler) {
+func RegisterRoutes(router *gin.Engine, spotifyHandler *handler.SpotifyHandler, authHandler *handler.AuthHandler, githubHandler *handler.GithubHandler) {
 	v1 := router.Group("/api/v1")
 
-	v1.GET("/login", authHandler.Login)
-	v1.GET("/callback", authHandler.Callback)
-	v1.GET("/now-playing", spotifyHandler.GetCurrentlyPlaying)
+	spotify := v1.Group("/spotify")
+	github := v1.Group("/github")
+
+	spotify.GET("/login", authHandler.Login)
+	spotify.GET("/callback", authHandler.Callback)
+	spotify.GET("/now-playing", spotifyHandler.GetCurrentlyPlaying)
+
+	github.GET("/repos", githubHandler.GetLastUpdatedRepositories)
 }
