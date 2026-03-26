@@ -3,26 +3,50 @@ title: Projects
 id: projects
 repositories:
   - id: "1"
-    nameWithOwner: johndev/awesome-project
-    description: An amazing open source project built with Vue and Node
-    url: https://github.com/johndev/awesome-project
-    stargazerCount: 342
+    nameWithOwner: athulanilthomas/splitwise-ts
+    description: A high-performance, fully typed SDK for integrating with Splitwise
+    url: https://github.com/athulanilthomas/splitwise-ts
+    stargazerCount: 2
     primaryLanguage: TypeScript
-    ownerAvatarUrl: ""
+    ownerAvatarUrl: "https://avatars.githubusercontent.com/u/30122216?v=4"
     isOwned: true
   - id: "2"
-    nameWithOwner: johndev/web-utils
-    description: Utility library for common web development tasks
-    url: https://github.com/johndev/web-utils
-    stargazerCount: 128
-    primaryLanguage: JavaScript
-    ownerAvatarUrl: ""
+    nameWithOwner: athulanilthomas/athulanilthomas.in
+    description: Personal portfolio website built with Nuxt 4, Vue.js, and Tailwind CSS
+    url: https://github.com/athulanilthomas/athulanilthomas.in
+    stargazerCount: 0
+    primaryLanguage: Vue
+    ownerAvatarUrl: "https://avatars.githubusercontent.com/u/30122216?v=4"
     isOwned: true
   - id: "3"
-    nameWithOwner: popular-lib/popular-lib
-    description: I contributed to this popular library
-    url: https://github.com/popular-lib/popular-lib
-    stargazerCount: 5300
+    nameWithOwner: athulanilthomas/www
+    description: A responsive site to showcase projects, skills, and experience, built with Deno Fresh
+    url: https://github.com/athulanilthomas/www
+    stargazerCount: 2
     primaryLanguage: TypeScript
-    ownerAvatarUrl: ""
+    ownerAvatarUrl: "https://avatars.githubusercontent.com/u/30122216?v=4"
+    isOwned: true
+  - id: "4"
+    nameWithOwner: athulanilthomas/Tiny
+    description: URL shortener built with Django 2.2
+    url: https://github.com/athulanilthomas/Tiny
+    stargazerCount: 0
+    primaryLanguage: CSS
+    ownerAvatarUrl: "https://avatars.githubusercontent.com/u/30122216?v=4"
+    isOwned: true
+  - id: "5"
+    nameWithOwner: spotify/spotify-web-api-ts-sdk
+    description: A TypeScript SDK for the Spotify Web API with types for returned data
+    url: https://github.com/spotify/spotify-web-api-ts-sdk
+    stargazerCount: 464
+    primaryLanguage: TypeScript
+    ownerAvatarUrl: "https://avatars.githubusercontent.com/u/251374?v=4"
+    isOwned: false
+  - id: "6"
+    nameWithOwner: harlan-zw/request-indexing
+    description: Find your missing pages on Google and request them to be indexed using the Web Search Indexing API
+    url: https://github.com/harlan-zw/request-indexing
+    stargazerCount: 384
+    primaryLanguage: TypeScript
+    ownerAvatarUrl: "https://avatars.githubusercontent.com/u/5326365?v=4"
     isOwned: false

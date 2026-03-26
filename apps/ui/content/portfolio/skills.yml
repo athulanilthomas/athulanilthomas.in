@@ -1,29 +1,53 @@
 type: skills
 title: Skills
 id: skills
-maxYears: 5
+maxYears: 6
 skills:
   - id: "1"
     title: Vue.js
-    yearsOfExperience: 5
-    logoUrl: ""
+    yearsOfExperience: 6
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
   - id: "2"
     title: TypeScript
-    yearsOfExperience: 4
-    logoUrl: ""
+    yearsOfExperience: 6
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
   - id: "3"
-    title: Node.js
-    yearsOfExperience: 4
-    logoUrl: ""
+    title: JavaScript
+    yearsOfExperience: 6
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
   - id: "4"
-    title: React
-    yearsOfExperience: 3
-    logoUrl: ""
+    title: Nuxt.js
+    yearsOfExperience: 5
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg"
   - id: "5"
-    title: Tailwind CSS
-    yearsOfExperience: 3
-    logoUrl: ""
+    title: Node.js
+    yearsOfExperience: 5
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
   - id: "6"
-    title: PostgreSQL
+    title: Deno
+    yearsOfExperience: 3
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/denojs/denojs-original.svg"
+  - id: "7"
+    title: Webpack
     yearsOfExperience: 4
-    logoUrl: ""
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg"
+  - id: "8"
+    title: Vite
+    yearsOfExperience: 3
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg"
+  - id: "9"
+    title: Docker
+    yearsOfExperience: 3
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+  - id: "10"
+    title: Python
+    yearsOfExperience: 3
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+  - id: "11"
+    title: Tailwind CSS
+    yearsOfExperience: 4
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+  - id: "12"
+    title: Nginx
+    yearsOfExperience: 3
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
