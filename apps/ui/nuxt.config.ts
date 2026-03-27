@@ -1,10 +1,23 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxt/image'
   ],
+
+  image: {
+    domains: ['avatars.githubusercontent.com']
+  },
+
+  runtimeConfig: {
+    apiBase: '',
+  },
 
   devtools: {
     enabled: true

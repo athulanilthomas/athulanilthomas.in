@@ -18,7 +18,7 @@ interface AuroraProps {
 }
 
 const props = withDefaults(defineProps<AuroraProps>(), {
-  colorStops: () => ['#7cff67', '#171D22', '#7cff67'],
+  colorStops: () => ['#6678ff', '#B19EEF', '#3d14e1'],
   amplitude: 1.0,
   blend: 0.5,
   speed: 1.0,
@@ -224,7 +224,7 @@ const initAurora = () => {
       program.uniforms.uAmplitude.value = props.amplitude ?? 1.0;
       program.uniforms.uBlend.value = props.blend ?? 0.5;
       program.uniforms.uIntensity.value = props.intensity ?? 1.0;
-      const stops = props.colorStops ?? ['#27FF64', '#7cff67', '#27FF64'];
+      const stops = props.colorStops ?? ['#6678ff', '#B19EEF', '#3d14e1'];
       program.uniforms.uColorStops.value = stops.map((hex: string) => {
         const c = new Color(hex);
         return [c.r, c.g, c.b];

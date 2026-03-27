@@ -2,7 +2,7 @@
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'theme-color', content: '#00DC82' },
+    { name: 'theme-color', content: '#6678ff' },
     { name: 'description', content: 'Athul Anil Thomas - Full Stack Developer Portfolio' }
   ],
   link: [
@@ -32,7 +32,7 @@ useSeoMeta({
     <!-- Aurora background — fixed behind everything -->
     <div class="fixed inset-0 w-full h-full overflow-hidden">
       <UiAurora
-        :color-stops="['#00DC82', '#052E16', '#00DC82']"
+        :color-stops="['#6678ff', '#B19EEF', '#3d14e1']"
         :amplitude="1.0"
         :blend="0.5"
         :speed="1.0"

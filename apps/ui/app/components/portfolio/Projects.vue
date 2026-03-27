@@ -22,7 +22,7 @@
           >
             <div class="flex items-center justify-between gap-4">
               <div class="flex items-center gap-3 min-w-0">
-                <img
+                <NuxtImg
                   :src="repo.ownerAvatarUrl"
                   :alt="repo.nameWithOwner.split('/')[0]"
                   width="24"
@@ -44,7 +44,7 @@
               {{ repo.description }}
             </p>
 
-            <div v-if="repo.primaryLanguage" class="flex items-center gap-2 text-xs text-muted-foreground">
+            <div v-if="repo.primaryLanguage" class="flex items-center gap-2 text-sm text-muted-foreground">
               <span class="w-2 h-2 rounded-full bg-primary" />
               {{ repo.primaryLanguage }}
             </div>
@@ -65,7 +65,7 @@
             rel="noopener noreferrer"
             class="group flex items-center gap-3 p-2 rounded-lg transition-colors hover:bg-secondary/30"
           >
-            <img
+            <NuxtImg
               :src="repo.ownerAvatarUrl"
               :alt="repo.nameWithOwner.split('/')[0]"
               width="24"

@@ -12,7 +12,7 @@
 
         <div class="flex gap-4">
           <div class="shrink-0">
-            <img
+            <NuxtImg
               :src="exp.logoUrl"
               :alt="`${exp.company} logo`"
               width="48"
@@ -34,7 +34,17 @@
               <span>{{ formatDate(exp.startDate, exp.endDate) }}</span>
             </div>
 
-            <p class="text-sm text-muted-foreground whitespace-pre-line">{{ exp.description }}</p>
+            <ul
+              v-if="exp.highlights?.length"
+              class="list-disc pl-5 space-y-1 text-sm text-muted-foreground"
+            >
+              <li
+                v-for="(point, pointIndex) in exp.highlights"
+                :key="`${exp.id}-${pointIndex}`"
+              >
+                {{ point }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -50,7 +60,7 @@ interface Experience {
   location?: string | null
   startDate: string
   endDate?: string | null
-  description?: string | null
+  highlights?: string[]
   logoUrl: string
 }
 
@@ -72,4 +82,5 @@ const formatDate = (start: string, end?: string | null) => {
   }
   return `${start} - ${end}`
 }
+
 </script>

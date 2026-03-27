@@ -80,12 +80,12 @@ const isOpen = ref(false)
 
 const navItems = computed<NavigationMenuItem[]>(() => [
   {
-    label: 'About',
+    label: 'about',
     icon: 'i-heroicons-folder',
     defaultOpen: true,
     children: [
       {
-        label: 'About',
+        label: 'about.md',
         icon: 'i-heroicons-document-text',
         to: '/about',
         active: route.path === '/about' || route.path === '/',
@@ -93,18 +93,18 @@ const navItems = computed<NavigationMenuItem[]>(() => [
     ],
   },
   {
-    label: 'Work',
+    label: 'work',
     icon: 'i-heroicons-folder',
     defaultOpen: true,
     children: [
       {
-        label: 'Experience',
+        label: 'experience.md',
         icon: 'i-heroicons-document-text',
         to: '/experience',
         active: route.path === '/experience',
       },
       {
-        label: 'Projects',
+        label: 'projects.md',
         icon: 'i-heroicons-document-text',
         to: '/projects',
         active: route.path === '/projects',
@@ -112,18 +112,18 @@ const navItems = computed<NavigationMenuItem[]>(() => [
     ],
   },
   {
-    label: 'Skills & Education',
+    label: 'career',
     icon: 'i-heroicons-folder',
     defaultOpen: true,
     children: [
       {
-        label: 'Skills',
+        label: 'skills.md',
         icon: 'i-heroicons-document-text',
         to: '/skills',
         active: route.path === '/skills',
       },
       {
-        label: 'Education',
+        label: 'education.md',
         icon: 'i-heroicons-document-text',
         to: '/education',
         active: route.path === '/education',

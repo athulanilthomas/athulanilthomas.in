@@ -6,7 +6,7 @@
       <ClientOnly>
         <UiLiquidEther
           class="absolute inset-0"
-          :colors="['#00DC82', '#75EDAE', '#00C16A']"
+          :colors="['#6678ff', '#B19EEF', '#3d14e1']"
           :auto-demo="true"
           :auto-speed="0.5"
           :auto-intensity="2.2"
@@ -15,11 +15,13 @@
           :resolution="0.5"
         />
       </ClientOnly>
-      <div class="absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center">
-        <div class="w-32 h-32 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center">
-          <span class="text-4xl font-bold text-primary">Your</span>
-        </div>
-      </div>
+      <NuxtImg
+        src="/avatar.png"
+        alt="Avatar"
+        width="256"
+        height="256"
+        class="absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 sm:w-56 sm:h-56 object-contain"
+      />
     </div>
 
     <p v-if="data?.about" class="text-muted-foreground leading-relaxed">{{ data.about }}</p>
@@ -49,13 +51,13 @@
       >
         Email
       </UButton>
-      <UButton icon="i-heroicons-globe-alt" size="sm" color="gray">
+      <UButton icon="i-heroicons-globe-alt" size="sm" color="neutral">
         GitHub
       </UButton>
-      <UButton icon="i-heroicons-window" size="sm" color="gray">
+      <UButton icon="i-heroicons-window" size="sm" color="neutral">
         LinkedIn
       </UButton>
-      <UButton icon="i-heroicons-command-line" size="sm" color="gray">
+      <UButton icon="i-heroicons-command-line" size="sm" color="neutral">
         Toptal
       </UButton>
     </div>

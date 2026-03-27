@@ -36,7 +36,7 @@ const experienceSchema = baseSchema.extend({
       startDate: z.string(),
       endDate: z.string().nullable(),
       logoUrl: z.string().url(),
-      description: z.string().optional(),
+      highlights: z.array(z.string()).optional(),
     })
   ),
 })

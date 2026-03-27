@@ -13,7 +13,7 @@ export interface Experience {
   location?: string | null
   startDate: string
   endDate?: string | null
-  description?: string | null
+  highlights?: string[]
   logoUrl: string
 }
 

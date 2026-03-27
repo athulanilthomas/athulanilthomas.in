@@ -8,7 +8,7 @@
 
     <div v-else class="grid grid-cols-1 sm:grid-cols-3 gap-y-3">
       <div v-for="skill in data?.skills" :key="skill.id" class="flex items-center gap-3">
-        <img
+        <NuxtImg
           :src="skill.logoUrl"
           :alt="`${skill.title} logo`"
           width="24"
