@@ -4,7 +4,7 @@
 
     <div class="relative border border-glass-border rounded-xl h-64 w-full overflow-hidden bg-secondary/10">
       <ClientOnly>
-        <UiLiquidEther
+        <LazyUiLiquidEther
           class="absolute inset-0"
           :colors="['#00dc82', '#66edb8', '#00ad61']"
           :auto-demo="true"
