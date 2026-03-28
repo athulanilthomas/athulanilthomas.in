@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-6">
+  <div class="space-y-6 min-w-0 overflow-hidden">
     <h1 class="text-2xl font-bold text-foreground">Projects</h1>
 
     <div v-if="!data?.repositories || data.repositories.length === 0" class="text-muted-foreground">
@@ -18,7 +18,7 @@
             :href="repo.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex flex-col gap-2 p-3 rounded-lg transition-colors border border-transparent hover:border-primary/30 hover:bg-primary/5"
+            class="group flex flex-col gap-2 p-3 rounded-lg transition-colors border border-transparent hover:border-primary/30 hover:bg-primary/5 min-w-0 overflow-hidden"
           >
             <div class="flex items-center justify-between gap-4">
               <div class="flex items-center gap-3 min-w-0">
@@ -63,7 +63,7 @@
             :href="repo.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex items-center gap-3 p-2 rounded-lg transition-colors hover:bg-secondary/30"
+            class="group flex items-center gap-3 p-2 rounded-lg transition-colors hover:bg-secondary/30 min-w-0 overflow-hidden"
           >
             <NuxtImg
               :src="repo.ownerAvatarUrl"

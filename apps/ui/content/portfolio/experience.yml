@@ -8,7 +8,7 @@ experiences:
     location: Bengaluru, Karnataka
     startDate: "2024-01-01"
     endDate: null
-    logoUrl: "https://companieslogo.com/img/orig/CAP.PA-9b4110b0.png?t=1720244491"
+    logoUrl: "/assets/capgemini.jpeg"
     highlights:
       - Built reusable AEM frontend components using Vue.js, HTL, and Sling Models.
       - Delivered responsive and accessible UI aligned with design system standards.
@@ -22,7 +22,7 @@ experiences:
     location: Thiruvananthapuram, Kerala
     startDate: "2019-01-01"
     endDate: "2024-01-01"
-    logoUrl: "https://media.licdn.com/dms/image/v2/D560BAQEGri4Oqp144A/company-logo_200_200/company-logo_200_200/0/1727434869081/alokinplc_logo?e=1776297600&v=beta&t=wVTIyKwiT8L96tkLO5kvI8fp1cPmv2eiIsDsSSRmCRk"
+    logoUrl: "/assets/alokinplc.jpeg"
     highlights:
       - Led frontend delivery and release lifecycle, including code reviews and quality checks.
       - Migrated SEO-focused Django sites to Nuxt.js and Vue.js with SSR.

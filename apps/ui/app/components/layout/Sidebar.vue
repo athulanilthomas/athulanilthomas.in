@@ -1,4 +1,11 @@
 <template>
+  <!-- Overlay for mobile -->
+  <div
+    v-if="isOpen"
+    class="sm:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
+    @click="isOpen = false"
+  />
+
   <aside
     :class="[
       'bg-glass border border-glass-border shadow-glass backdrop-blur-[40px] backdrop-saturate-150 flex flex-col shrink-0',
@@ -9,9 +16,13 @@
   >
     <!-- Header -->
     <div class="p-4 flex items-center gap-3 border-b border-border/30">
-      <div class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center text-primary font-bold">
-        {{ fullName.charAt(0) }}
-      </div>
+      <NuxtImg
+        src="https://avatars.githubusercontent.com/u/30122216"
+        alt="Profile"
+        width="32"
+        height="32"
+        class="w-8 h-8 rounded-full object-cover shrink-0"
+      />
       <div class="flex-1 min-w-0">
         <h1 class="text-foreground font-semibold text-sm">{{ fullName }}</h1>
         <p class="text-muted-foreground text-xs">{{ headline }}</p>
@@ -49,20 +60,13 @@
         }"
       />
     </div>
-
-    <!-- Overlay for mobile -->
-    <div
-      v-if="isOpen"
-      class="sm:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
-      @click="isOpen = false"
-    />
   </aside>
 
   <!-- Mobile Toggle Button -->
   <button
     type="button"
     @click="isOpen = true"
-    class="sm:hidden absolute top-4 right-4 z-30 p-2.5 bg-glass border border-glass-border rounded-lg shadow-glass-pill backdrop-blur-[40px] backdrop-saturate-150 hover:bg-secondary/50 transition-colors"
+    class="flex sm:hidden absolute top-4 right-4 z-30 p-2.5 bg-glass border border-glass-border rounded-lg shadow-glass-pill backdrop-blur-[40px] backdrop-saturate-150 hover:bg-secondary/50 transition-colors"
   >
     <UIcon name="i-heroicons-chevron-left" class="w-5 h-5 text-foreground" />
   </button>
@@ -72,15 +76,20 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
 
 const route = useRoute()
+const router = useRouter()
 
 const fullName = 'Athul Anil Thomas'
 const headline = 'Full Stack Developer'
 
 const isOpen = ref(false)
 
+router.afterEach(() => {
+  isOpen.value = false
+})
+
 const navItems = computed<NavigationMenuItem[]>(() => [
   {
-    label: 'about',
+    label: 'personal',
     icon: 'i-heroicons-folder',
     defaultOpen: true,
     children: [
@@ -93,7 +102,7 @@ const navItems = computed<NavigationMenuItem[]>(() => [
     ],
   },
   {
-    label: 'work',
+    label: 'career',
     icon: 'i-heroicons-folder',
     defaultOpen: true,
     children: [
@@ -103,19 +112,6 @@ const navItems = computed<NavigationMenuItem[]>(() => [
         to: '/experience',
         active: route.path === '/experience',
       },
-      {
-        label: 'projects.md',
-        icon: 'i-heroicons-document-text',
-        to: '/projects',
-        active: route.path === '/projects',
-      },
-    ],
-  },
-  {
-    label: 'career',
-    icon: 'i-heroicons-folder',
-    defaultOpen: true,
-    children: [
       {
         label: 'skills.md',
         icon: 'i-heroicons-document-text',
@@ -127,6 +123,19 @@ const navItems = computed<NavigationMenuItem[]>(() => [
         icon: 'i-heroicons-document-text',
         to: '/education',
         active: route.path === '/education',
+      },
+    ],
+  },
+  {
+    label: 'contribution',
+    icon: 'i-heroicons-folder',
+    defaultOpen: true,
+    children: [
+      {
+        label: 'projects.md',
+        icon: 'i-heroicons-document-text',
+        to: '/projects',
+        active: route.path === '/projects',
       },
     ],
   },
