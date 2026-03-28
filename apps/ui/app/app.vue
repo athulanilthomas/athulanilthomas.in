@@ -6,8 +6,7 @@ useHead({
     { name: 'author', content: 'Athul Anil Thomas' }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' },
-    { rel: 'canonical', href: 'https://athulanilthomas.in' }
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
   ],
   htmlAttrs: {
     lang: 'en'
