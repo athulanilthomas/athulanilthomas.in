@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     '/experience': { prerender: true },
     '/skills': { prerender: true },
     '/education': { prerender: true },
-    '/projects': { isr: 604800 }
+    '/projects': { prerender: true }
   },
 
   compatibilityDate: '2025-01-15',
