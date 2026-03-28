@@ -42,7 +42,7 @@ useSeoMeta({
   <UApp>
     <!-- Aurora background — fixed behind everything -->
     <div class="fixed inset-0 w-full h-full overflow-hidden">
-      <UiAurora
+      <LazyUiAurora
         :color-stops="['#00dc82', '#66edb8', '#00ad61']"
         :amplitude="1.0"
         :blend="0.5"
