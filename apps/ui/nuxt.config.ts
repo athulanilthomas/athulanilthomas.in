@@ -8,8 +8,44 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/ui',
     '@nuxt/content',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@nuxtjs/seo'
   ],
+
+  site: {
+    url: 'https://athulanilthomas.in',
+    name: 'Athul Anil Thomas',
+    description: 'Full Stack Developer specializing in Vue.js, Nuxt, and modern web technologies. Portfolio showcasing projects, experience, and open source contributions.',
+    defaultLocale: 'en'
+  },
+
+  ogImage: {
+    enabled: false
+  },
+
+  sitemap: {
+    enabled: true
+  },
+
+  robots: {
+    allow: '/',
+    sitemap: '/sitemap.xml'
+  },
+
+  schemaOrg: {
+    identity: {
+      type: 'Person',
+      name: 'Athul Anil Thomas',
+      url: 'https://athulanilthomas.in',
+      image: 'https://avatars.githubusercontent.com/u/30122216',
+      jobTitle: 'Full Stack Developer',
+      sameAs: [
+        'https://github.com/athulanilthomas',
+        'https://www.linkedin.com/in/athul-anil-thomas',
+        'https://twitter.com/AthulAnilThoma2'
+      ]
+    }
+  },
 
   image: {
     domains: ['avatars.githubusercontent.com']

@@ -13,7 +13,22 @@ const { data } = await useAsyncData('about', () =>
   queryCollection('about').first() as Promise<AboutData>
 )
 
-useHead({
-  title: 'About - Athul Anil Thomas',
+const title = 'About'
+const description = 'Learn about Athul Anil Thomas, a Full Stack Developer specializing in Vue.js, Nuxt, and modern web technologies based in India.'
+
+useHead({ title })
+
+useSeoMeta({
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description
 })
+
+useSchemaOrg([
+  defineWebPage({
+    name: title,
+    description
+  })
+])
 </script>

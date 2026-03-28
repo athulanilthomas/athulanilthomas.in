@@ -24,6 +24,7 @@
   "devDependencies": {
     "@iconify-json/simple-icons": "^1.2.74",
     "@nuxt/eslint": "^1.15.2",
+    "@nuxtjs/seo": "^5.0.2",
     "@types/three": "^0.183.1",
     "eslint": "^10.0.3",
     "typescript": "^5.9.3",

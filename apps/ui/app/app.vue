@@ -3,18 +3,23 @@ useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'theme-color', content: '#00dc82' },
-    { name: 'description', content: 'Athul Anil Thomas - Full Stack Developer Portfolio' }
+    { name: 'author', content: 'Athul Anil Thomas' }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' }
+    { rel: 'icon', href: '/favicon.ico' },
+    { rel: 'canonical', href: 'https://athulanilthomas.in' }
   ],
   htmlAttrs: {
     lang: 'en'
   }
 })
 
-const title = 'Athul Anil Thomas - Full Stack Developer'
-const description = 'Exploring modern web development, open source contributions, and technical writing.'
+const title = 'Full Stack Developer'
+const description = 'Full Stack Developer specializing in Vue.js, Nuxt, and modern web technologies. Portfolio showcasing projects, experience, and open source contributions.'
+
+useHead({
+  titleTemplate: (title) => title ? `${title} | Athul Anil Thomas` : 'Athul Anil Thomas - Full Stack Developer'
+})
 
 useSeoMeta({
   title,
@@ -22,8 +27,15 @@ useSeoMeta({
   ogTitle: title,
   ogDescription: description,
   ogImage: '/og-image.png',
-  twitterCreator: '@yourtwitterhandle',
-  twitterCard: 'summary_large_image'
+  ogType: 'website',
+  ogLocale: 'en_US',
+  ogSiteName: 'Athul Anil Thomas',
+  twitterCreator: '@AthulAnilThoma2',
+  twitterSite: '@AthulAnilThoma2',
+  twitterCard: 'summary_large_image',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: '/og-image.png'
 })
 </script>
 
