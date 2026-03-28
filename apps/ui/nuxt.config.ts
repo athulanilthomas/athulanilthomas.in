@@ -32,7 +32,12 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
+    '/about': { prerender: true },
+    '/experience': { prerender: true },
+    '/skills': { prerender: true },
+    '/education': { prerender: true },
+    '/projects': { isr: 604800 }
   },
 
   compatibilityDate: '2025-01-15',
