@@ -8,6 +8,8 @@ type RepoDTO struct {
 	Description     string `json:"description"`
 	StargazersCount int    `json:"stargazers_count"`
 	HTMLURL         string `json:"html_url"`
+	AvatarURL       string `json:"avatar_url"`
+	PrimaryLanguage string `json:"primary_language"`
 }
 
 func toRepoDTO(repo *github.Repository) *RepoDTO {
@@ -21,6 +23,8 @@ func toRepoDTO(repo *github.Repository) *RepoDTO {
 		Description:     repo.GetDescription(),
 		StargazersCount: repo.GetStargazersCount(),
 		HTMLURL:         repo.GetHTMLURL(),
+		AvatarURL:       repo.GetOwner().GetAvatarURL(),
+		PrimaryLanguage: repo.GetLanguage(),
 	}
 }
 
