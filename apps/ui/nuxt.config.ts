@@ -4,6 +4,10 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
 
+  experimental: {
+    payloadExtraction: 'client',
+  },
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
@@ -73,7 +77,7 @@ export default defineNuxtConfig({
     '/experience': { prerender: true },
     '/skills': { prerender: true },
     '/education': { prerender: true },
-    '/projects': { prerender: true }
+    '/projects': { isr: 3600 }
   },
 
   compatibilityDate: '2025-01-15',
