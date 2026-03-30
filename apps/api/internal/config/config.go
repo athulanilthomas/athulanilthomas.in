@@ -17,6 +17,8 @@ type Config struct {
 	GithubAppClientID       string
 	GithubAppPrivateKey     []byte
 	GithubAppInstallationID int64
+	RateLimitRPS            float64
+	RateLimitBurst          int
 	Port                    int
 }
 
@@ -27,6 +29,9 @@ func NewConfig() (*Config, error) {
 
 	githubAppPrivateKey, privateKeyError := base64.StdEncoding.DecodeString(os.Getenv("GITHUB_APP_PRIVATE_KEY"))
 	githubAppInstallationID, installationIDError := strconv.ParseInt(os.Getenv("GITHUB_APP_INSTALLATION_ID"), 10, 64)
+
+	rateLimitRps, rateLimitRpsError := strconv.ParseFloat(os.Getenv("RATE_LIMIT_RPS"), 64)
+	rateLimitBurst, rateLimitBurstError := strconv.Atoi(os.Getenv("RATE_LIMIT_BURST"))
 
 	if err != nil {
 		port = 8080
@@ -40,6 +45,14 @@ func NewConfig() (*Config, error) {
 		githubAppInstallationID = 0
 	}
 
+	if rateLimitRpsError != nil {
+		rateLimitRps = 5
+	}
+
+	if rateLimitBurstError != nil {
+		rateLimitBurst = 10
+	}
+
 	config := &Config{
 		SpotifyClientID:         os.Getenv("SPOTIFY_CLIENT_ID"),
 		SpotifyClientSecret:     os.Getenv("SPOTIFY_CLIENT_SECRET"),
@@ -48,6 +61,8 @@ func NewConfig() (*Config, error) {
 		GithubAppClientID:       os.Getenv("GITHUB_APP_CLIENT_ID"),
 		GithubAppPrivateKey:     githubAppPrivateKey,
 		GithubAppInstallationID: githubAppInstallationID,
+		RateLimitRPS:            rateLimitRps,
+		RateLimitBurst:          rateLimitBurst,
 		Port:                    port,
 	}
 

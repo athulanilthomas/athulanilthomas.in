@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/athulanilthomas/www/api/internal/config"
+	"github.com/athulanilthomas/www/api/internal/middleware"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"
 )
@@ -23,8 +24,10 @@ func NewServer(cfg *config.Config, router *gin.Engine) *Server {
 	}
 }
 
-func NewRouter() *gin.Engine {
-	return gin.Default()
+func NewRouter(m *middleware.Middlewares) *gin.Engine {
+	r := gin.Default()
+	r.Use(m.Handlers...)
+	return r
 }
 
 func Start(lc fx.Lifecycle, s *Server) {

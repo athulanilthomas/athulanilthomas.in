@@ -6,6 +6,7 @@ import (
 	"github.com/athulanilthomas/www/api/internal/config"
 	"github.com/athulanilthomas/www/api/internal/github"
 	"github.com/athulanilthomas/www/api/internal/handler"
+	"github.com/athulanilthomas/www/api/internal/middleware"
 	"github.com/athulanilthomas/www/api/internal/server"
 	"github.com/athulanilthomas/www/api/internal/service"
 	"github.com/athulanilthomas/www/api/internal/spotify"
@@ -27,6 +28,9 @@ func main() {
 		fx.Provide(handler.NewSpotifyHandler),
 		fx.Provide(handler.NewAuthHandler),
 		fx.Provide(handler.NewGithubHandler),
+
+		fx.Provide(middleware.NewRateLimitterMiddleware),
+		fx.Provide(middleware.NewMiddlewares),
 
 		fx.Provide(server.NewRouter),
 		fx.Provide(server.NewServer),
