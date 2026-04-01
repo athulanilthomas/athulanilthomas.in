@@ -30,6 +30,7 @@ func main() {
 		fx.Provide(handler.NewGithubHandler),
 
 		fx.Provide(middleware.NewRateLimitterMiddleware),
+		fx.Provide(middleware.NewAuthenticationMiddleware),
 		fx.Provide(middleware.NewMiddlewares),
 
 		fx.Provide(server.NewRouter),

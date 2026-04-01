@@ -20,6 +20,7 @@ type Config struct {
 	RateLimitRPS            float64
 	RateLimitBurst          int
 	Port                    int
+	XApiSecret              string
 }
 
 func NewConfig() (*Config, error) {
@@ -64,6 +65,7 @@ func NewConfig() (*Config, error) {
 		RateLimitRPS:            rateLimitRps,
 		RateLimitBurst:          rateLimitBurst,
 		Port:                    port,
+		XApiSecret:              os.Getenv("X_API_SECRET"),
 	}
 
 	if config.GithubAppClientID == "" || string(config.GithubAppPrivateKey) == "" || config.GithubAppInstallationID == 0 {
