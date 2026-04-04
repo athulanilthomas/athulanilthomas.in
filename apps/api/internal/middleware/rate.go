@@ -11,7 +11,7 @@ import (
 
 type RateLimitMiddleware struct {
 	fx.Out
-	Handler gin.HandlerFunc `group:"middlewares"`
+	Handler gin.HandlerFunc `name:"ratelimit"`
 }
 
 func NewRateLimitterMiddleware(cfg *config.Config) RateLimitMiddleware {

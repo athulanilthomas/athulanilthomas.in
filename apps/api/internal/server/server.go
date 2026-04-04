@@ -26,7 +26,7 @@ func NewServer(cfg *config.Config, router *gin.Engine) *Server {
 
 func NewRouter(m *middleware.Middlewares) *gin.Engine {
 	r := gin.Default()
-	r.Use(m.Handlers...)
+	r.Use(m.RateLimit)
 	return r
 }
 

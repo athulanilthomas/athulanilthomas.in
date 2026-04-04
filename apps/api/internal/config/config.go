@@ -14,6 +14,7 @@ type Config struct {
 	SpotifyClientSecret     string
 	SpotifyRedirectURL      string
 	SpotifyRefreshToken     string
+	SpotifyStateVariable    string
 	GithubAppClientID       string
 	GithubAppPrivateKey     []byte
 	GithubAppInstallationID int64
@@ -59,6 +60,7 @@ func NewConfig() (*Config, error) {
 		SpotifyClientSecret:     os.Getenv("SPOTIFY_CLIENT_SECRET"),
 		SpotifyRedirectURL:      os.Getenv("SPOTIFY_REDIRECT_URL"),
 		SpotifyRefreshToken:     os.Getenv("SPOTIFY_REFRESH_TOKEN"),
+		SpotifyStateVariable:    os.Getenv("SPOTIFY_STATE_VARIABLE"),
 		GithubAppClientID:       os.Getenv("GITHUB_APP_CLIENT_ID"),
 		GithubAppPrivateKey:     githubAppPrivateKey,
 		GithubAppInstallationID: githubAppInstallationID,

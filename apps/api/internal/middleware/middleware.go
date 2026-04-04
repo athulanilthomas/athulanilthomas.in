@@ -7,15 +7,18 @@ import (
 
 type MiddlewareParams struct {
 	fx.In
-	Handlers []gin.HandlerFunc `group:"middlewares"`
+	Auth      gin.HandlerFunc `name:"auth"`
+	RateLimit gin.HandlerFunc `name:"ratelimit"`
 }
 
 type Middlewares struct {
-	Handlers []gin.HandlerFunc
+	Auth      gin.HandlerFunc
+	RateLimit gin.HandlerFunc
 }
 
 func NewMiddlewares(mp MiddlewareParams) *Middlewares {
 	return &Middlewares{
-		Handlers: mp.Handlers,
+		Auth:      mp.Auth,
+		RateLimit: mp.RateLimit,
 	}
 }

@@ -28,6 +28,7 @@ func main() {
 		fx.Provide(handler.NewSpotifyHandler),
 		fx.Provide(handler.NewAuthHandler),
 		fx.Provide(handler.NewGithubHandler),
+		fx.Provide(handler.NewHealthHandler),
 
 		fx.Provide(middleware.NewRateLimitterMiddleware),
 		fx.Provide(middleware.NewAuthenticationMiddleware),

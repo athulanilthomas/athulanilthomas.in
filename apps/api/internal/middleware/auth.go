@@ -10,7 +10,7 @@ import (
 
 type AuthenticationMiddleware struct {
 	fx.Out
-	Handler gin.HandlerFunc `group:"middlewares"`
+	Handler gin.HandlerFunc `name:"auth"`
 }
 
 func NewAuthenticationMiddleware(cfg *config.Config) AuthenticationMiddleware {
