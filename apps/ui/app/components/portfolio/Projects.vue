@@ -9,7 +9,7 @@
     <template v-else>
       <div v-if="ownedRepos.length > 0" class="space-y-3">
         <h2 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-          My Projects
+            Recently Updated
         </h2>
         <div class="grid gap-3">
           <a
