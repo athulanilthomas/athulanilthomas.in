@@ -5,7 +5,7 @@
       <!-- Album sleeve -->
       <div :class="['sleeve', { 'sleeve-shifted': isActive, 'sleeve-idle': !isActive }]">
         <div class="sleeve-front">
-          <NuxtImg v-if="albumImage" :src="albumImage" :alt="albumName" loading="lazy" width="300" height="300" format="webp" class="sleeve-art" />
+          <NuxtImg v-if="albumImage" :src="albumImage" :alt="albumName" width="300" height="300" format="webp" placeholder loading="eager" class="sleeve-art" />
           <div v-else class="sleeve-placeholder">
             <UIcon name="i-simple-icons-spotify" class="sleeve-placeholder-icon" />
           </div>
@@ -14,7 +14,7 @@
 
       <!-- Vinyl record -->
       <div :class="['vinyl-area', { 'vinyl-out': isActive }]">
-        <div :class="['vinyl', { spinning: isSpinning }]">
+        <div :class="['vinyl', { playing: isActive }]">
           <!-- Grooves -->
           <div class="vinyl-grooves">
             <div v-for="i in 50" :key="i" class="groove" :style="grooveStyle(i)" />
@@ -23,7 +23,7 @@
           <div class="vinyl-sheen" />
           <!-- Center label -->
           <div class="vinyl-label">
-            <NuxtImg v-if="albumImage" :src="albumImage" :alt="albumName" loading="lazy" width="100" height="100" format="webp" class="label-art" />
+            <NuxtImg v-if="albumImage" :src="albumImage" :alt="albumName" width="100" height="100" format="webp" placeholder loading="eager" class="label-art" />
             <div v-else class="label-fallback" />
             <div class="label-hole" />
           </div>
@@ -33,7 +33,7 @@
       <!-- Tonearm -->
       <div :class="['tonearm', { playing: isActive, searching: isLoading }]">
         <div class="tonearm-base" />
-        <div ref="tonearm-arm" class="tonearm-arm">
+        <div class="tonearm-arm">
           <div class="tonearm-head" />
         </div>
       </div>
@@ -70,8 +70,6 @@ const props = defineProps<{
 }>()
 
 const isActive = ref(false)
-const isSpinning = ref(false)
-const tonearmArmRef = useTemplateRef<HTMLElement>('tonearm-arm')
 
 function grooveStyle(i: number) {
   const size = 96 - i * 1.6
@@ -82,18 +80,8 @@ function startSequence() {
   isActive.value = true
 }
 
-watchPostEffect(() => {
-  if (!isActive.value) return
-  tonearmArmRef.value?.addEventListener(
-    'transitionend',
-    () => { isSpinning.value = true },
-    { once: true },
-  )
-})
-
 function stopSequence() {
   isActive.value = false
-  isSpinning.value = false
 }
 
 onMounted(() => {
@@ -260,8 +248,9 @@ watch(
     0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
-.vinyl.spinning {
-  animation: spin 1.8s linear infinite;
+/* 1.35s delay = tonearm transition-delay (0.55s) + duration (0.8s) */
+.vinyl.playing {
+  animation: spin 1.8s linear 1.35s infinite;
 }
 
 @keyframes spin {
