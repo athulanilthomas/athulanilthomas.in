@@ -139,5 +139,18 @@ const navItems = computed<NavigationMenuItem[]>(() => [
       },
     ],
   },
+  {
+    label: 'lab',
+    icon: 'i-heroicons-folder',
+    defaultOpen: true,
+    children: [
+      {
+        label: 'now-playing.go',
+        icon: 'i-heroicons-code-bracket',
+        to: '/spotify',
+        active: route.path === '/spotify',
+      },
+    ],
+  },
 ])
 </script>
