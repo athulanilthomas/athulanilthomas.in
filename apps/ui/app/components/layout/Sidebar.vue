@@ -145,8 +145,8 @@ const navItems = computed<NavigationMenuItem[]>(() => [
     defaultOpen: true,
     children: [
       {
-        label: 'now-playing.md',
-        icon: 'i-heroicons-document-text',
+        label: 'now-playing.go',
+        icon: 'i-heroicons-code-bracket',
         to: '/spotify',
         active: route.path === '/spotify',
       },

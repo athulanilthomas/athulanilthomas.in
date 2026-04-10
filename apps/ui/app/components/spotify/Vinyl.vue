@@ -3,7 +3,7 @@
     <!-- Record player -->
     <div class="player">
       <!-- Album sleeve -->
-      <div :class="['sleeve', { 'sleeve-shifted': isPlaying, 'sleeve-idle': !isPlaying }]">
+      <div :class="['sleeve', { 'sleeve-shifted': isActive, 'sleeve-idle': !isActive }]">
         <div class="sleeve-front">
           <NuxtImg v-if="albumImage" :src="albumImage" :alt="albumName" loading="lazy" width="300" height="300" format="webp" class="sleeve-art" />
           <div v-else class="sleeve-placeholder">
@@ -13,8 +13,8 @@
       </div>
 
       <!-- Vinyl record -->
-      <div :class="['vinyl-area', { 'vinyl-out': isPlaying }]">
-        <div :class="['vinyl', { spinning: isPlaying }]">
+      <div :class="['vinyl-area', { 'vinyl-out': isActive }]">
+        <div :class="['vinyl', { spinning: isSpinning }]">
           <!-- Grooves -->
           <div class="vinyl-grooves">
             <div v-for="i in 50" :key="i" class="groove" :style="grooveStyle(i)" />
@@ -31,44 +31,117 @@
       </div>
 
       <!-- Tonearm -->
-      <div :class="['tonearm', { playing: isPlaying }]">
+      <div :class="['tonearm', { playing: isActive, searching: isLoading }]">
         <div class="tonearm-base" />
-        <div class="tonearm-arm">
+        <div ref="tonearm-arm" class="tonearm-arm">
           <div class="tonearm-head" />
         </div>
       </div>
     </div>
 
-    <!-- Song info -->
-    <div v-if="isPlaying" class="mt-6 text-center space-y-1.5">
-      <p class="text-base font-semibold text-foreground truncate max-w-[260px] mx-auto">{{ trackName }}</p>
-      <p class="text-sm text-muted-foreground truncate max-w-[240px] mx-auto">{{ artistName }}</p>
-      <p class="text-xs text-muted-foreground/60 truncate max-w-[200px] mx-auto">{{ albumName }}</p>
+    <!-- Info slot: fixed height to prevent layout shift -->
+    <div class="info-slot">
+      <Transition name="song-info">
+        <div v-if="isActive" class="text-center space-y-1.5">
+          <p class="text-base font-semibold text-foreground truncate max-w-[260px] mx-auto">{{ trackName }}</p>
+          <p class="text-sm text-muted-foreground truncate max-w-[240px] mx-auto">{{ artistName }}</p>
+          <p class="text-xs text-muted-foreground/60 truncate max-w-[200px] mx-auto">{{ albumName }}</p>
+        </div>
+      </Transition>
+
+      <Transition name="idle-info">
+        <div v-if="!isPlaying && !isLoading" class="text-center space-y-2">
+          <p class="text-sm font-medium text-muted-foreground/80">It's quiet right now</p>
+          <p class="text-xs text-muted-foreground/40">Check back later to see what's spinning</p>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   isPlaying: boolean
+  isLoading?: boolean
   trackName?: string
   artistName?: string
   albumName?: string
   albumImage?: string
 }>()
 
+const isActive = ref(false)
+const isSpinning = ref(false)
+const tonearmArmRef = useTemplateRef<HTMLElement>('tonearm-arm')
+
 function grooveStyle(i: number) {
   const size = 96 - i * 1.6
   return { width: `${size}%`, height: `${size}%` }
 }
+
+function startSequence() {
+  isActive.value = true
+}
+
+watchPostEffect(() => {
+  if (!isActive.value) return
+  tonearmArmRef.value?.addEventListener(
+    'transitionend',
+    () => { isSpinning.value = true },
+    { once: true },
+  )
+})
+
+function stopSequence() {
+  isActive.value = false
+  isSpinning.value = false
+}
+
+onMounted(() => {
+  if (props.isPlaying) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(startSequence)
+    })
+  }
+})
+
+watch(
+  () => props.isPlaying,
+  (val) => {
+    if (val) startSequence()
+    else stopSequence()
+  },
+)
 </script>
 
 <style scoped>
+@keyframes player-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .player-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: player-enter 0.55s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Fixed-height slot prevents layout shift when info text appears/disappears */
+.info-slot {
+  position: relative;
+  height: 72px;
+  margin-top: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
 }
 
 .player {
@@ -93,7 +166,7 @@ function grooveStyle(i: number) {
   width: 200px;
   height: 200px;
   z-index: 3;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
 .sleeve-shifted {
@@ -150,7 +223,7 @@ function grooveStyle(i: number) {
   width: 200px;
   height: 200px;
   z-index: 2;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
 }
 
 .vinyl-out {
@@ -308,12 +381,21 @@ function grooveStyle(i: number) {
   border-radius: 2px;
   transform-origin: top center;
   transform: rotate(-30deg);
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.55s;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .tonearm.playing .tonearm-arm {
   transform: rotate(8deg);
+}
+
+.tonearm.searching .tonearm-arm {
+  animation: tonearm-scan 2.8s ease-in-out infinite;
+}
+
+@keyframes tonearm-scan {
+  0%, 100% { transform: rotate(-30deg); }
+  50% { transform: rotate(-12deg); }
 }
 
 @media (min-width: 640px) {
@@ -333,27 +415,60 @@ function grooveStyle(i: number) {
   border-radius: 1px 1px 2px 2px;
 }
 
-/* ── Idle state ────────────────────────────────── */
-.sleeve-idle .sleeve-front {
-  animation: idle-glow 4s ease-in-out infinite;
+/* ── Song info entrance ───────────────────────── */
+.song-info-enter-active {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 1.15s;
+}
+.song-info-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.song-info-enter-from,
+.song-info-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.song-info-leave-to {
+  transform: translateY(-4px);
 }
 
-.sleeve-idle .sleeve-placeholder-icon {
-  animation: icon-breathe 4s ease-in-out infinite;
+.idle-info-enter-active {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.3s;
+}
+.idle-info-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.idle-info-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.idle-info-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* ── Idle state ────────────────────────────────── */
+.sleeve-idle .sleeve-front {
+  animation: idle-glow 3.5s ease-in-out infinite;
 }
 
 @keyframes idle-glow {
   0%, 100% {
     box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(255, 255, 255, 0.04);
+      0 4px 24px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
   }
   50% {
     box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.4),
-      0 0 15px rgba(0, 220, 130, 0.08),
-      0 0 0 1px rgba(0, 220, 130, 0.06);
+      0 4px 24px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 0 18px 4px rgba(255, 255, 255, 0.04);
   }
+}
+
+.sleeve-idle .sleeve-placeholder-icon {
+  animation: icon-breathe 4s ease-in-out infinite;
 }
 
 @keyframes icon-breathe {
