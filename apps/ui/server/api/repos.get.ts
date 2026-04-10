@@ -19,10 +19,10 @@ const CACHE_CONFIG: CachedEventHandlerOptions = {
 }
 
 export default defineCachedEventHandler(async (event) => {
-    const config = useRuntimeConfig(event)
-    const repos = await $fetch<RepoDTO[]>(`/github/repos`, { baseURL: config.apiBase })
+    const api = createApiClient(event)
+    const repos = await api<RepoDTO[]>(`/github/repos`)
 
-    const repositories = repos.map((repo, index) => {
+    const repositories = (repos ?? []).map((repo, index) => {
         const owner = repo.full_name.split('/')[0] ?? ''
 
         return {

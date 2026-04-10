@@ -57,6 +57,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     apiBase: '',
+    apiSecret: '',
   },
 
   devtools: {
