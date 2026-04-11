@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.simpleicons.org/nuxtdotjs/00DC82" alt="Nuxt Logo" width="80" />
+  <img src=".github/assets/nuxt-logo.svg" alt="Nuxt Logo" height="40" />
 </p>
 
 <h1 align="center">Personal Portfolio</h1>
