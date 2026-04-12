@@ -107,7 +107,7 @@ const albumImage = computed(() => {
 const title = 'Now Playing'
 const description = 'See what Athul is currently listening to on Spotify.'
 
-useHead({ title })
+useHead({ title, meta: [{ name: 'robots', content: 'noindex' }] })
 
 useSeoMeta({
   title,

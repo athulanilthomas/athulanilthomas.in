@@ -147,8 +147,8 @@ const navItems = computed<NavigationMenuItem[]>(() => [
       {
         label: 'now-playing.go',
         icon: 'i-heroicons-code-bracket',
-        to: '/spotify',
-        active: route.path === '/spotify',
+        to: '/now-playing',
+        active: route.path === '/now-playing',
       },
     ],
   },
