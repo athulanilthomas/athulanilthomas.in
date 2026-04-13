@@ -10,7 +10,7 @@
         <SpotifyVinyl
           v-else
           key="player"
-          :is-playing="status === 'success' && !!nowPlaying"
+          :is-playing="status === 'success' && isPlaying"
           :is-loading="status === 'pending' || status === 'idle'"
           :track-name="nowPlaying?.item?.name"
           :artist-name="artists"
@@ -80,22 +80,19 @@ interface NowPlaying {
   playing: boolean
   item: SpotifyTrack
   progress_ms: number
-}
-
-interface WorkerStats {
-  goroutines: number
+  worker_count: number
 }
 
 const { data: nowPlaying, status } = useLazyFetch<NowPlaying>('/api/now-playing')
 
-const { data: workerStats } = useLazyFetch<WorkerStats | null>('/api/worker-stats')
-
-const showWorkerStats = computed(() => !!workerStats.value && !!nowPlaying.value)
-const goroutineCount = computed(() => workerStats.value?.goroutines ?? 0)
+const showWorkerStats = computed(() => !!nowPlaying.value.worker_count && !!nowPlaying.value)
+const goroutineCount = computed(() => nowPlaying.value.worker_count ?? 0)
 
 const artists = computed(() =>
   nowPlaying.value?.item?.artists?.map(a => a.name).join(', ')
 )
+
+const isPlaying = computed(() => nowPlaying.value?.is_playing)
 
 const albumImage = computed(() => {
   const images = nowPlaying.value?.item?.album?.images
