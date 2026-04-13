@@ -1,7 +1,9 @@
 package handler
 
 import (
+	"github.com/athulanilthomas/www/api/internal/handler/dto"
 	"github.com/athulanilthomas/www/api/internal/service"
+
 	"github.com/gin-gonic/gin"
 
 	"net/http"
@@ -17,6 +19,7 @@ func NewSpotifyHandler(service *service.Service) *SpotifyHandler {
 
 func (h *SpotifyHandler) GetCurrentlyPlaying(c *gin.Context) {
 	currentlyPlaying, err := h.service.GetCurrentlyPlaying(c.Request.Context())
+	workerCount := h.service.GetWorkerCount(c.Request.Context())
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -28,5 +31,5 @@ func (h *SpotifyHandler) GetCurrentlyPlaying(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, currentlyPlaying)
+	c.JSON(http.StatusOK, dto.ToSpotifyDTO(currentlyPlaying, workerCount))
 }

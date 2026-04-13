@@ -100,6 +100,11 @@ func (s *Service) GetCurrentlyPlaying(ctx context.Context) (*spotify.CurrentlyPl
 	return res.(*spotify.CurrentlyPlaying), nil
 }
 
+func (s *Service) GetWorkerCount(ctx context.Context) int {
+	count := s.pool.Running()
+	return count
+}
+
 func (s *Service) SetClient(client *spotify.Client) {
 	s.mux.Lock()
 	s.client = client
