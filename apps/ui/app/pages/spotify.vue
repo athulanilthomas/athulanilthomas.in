@@ -85,14 +85,14 @@ interface NowPlaying {
 
 const { data: nowPlaying, status } = useLazyFetch<NowPlaying>('/api/now-playing')
 
-const showWorkerStats = computed(() => !!nowPlaying.value.worker_count && !!nowPlaying.value)
-const goroutineCount = computed(() => nowPlaying.value.worker_count ?? 0)
+const showWorkerStats = computed(() => !!nowPlaying.value?.worker_count && !!nowPlaying.value)
+const goroutineCount = computed(() => nowPlaying.value?.worker_count ?? 0)
 
 const artists = computed(() =>
   nowPlaying.value?.item?.artists?.map(a => a.name).join(', ')
 )
 
-const isPlaying = computed(() => nowPlaying.value?.is_playing)
+const isPlaying = computed(() => !!nowPlaying.value?.is_playing)
 
 const albumImage = computed(() => {
   const images = nowPlaying.value?.item?.album?.images
