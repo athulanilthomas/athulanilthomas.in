@@ -78,7 +78,9 @@ export default defineNuxtConfig({
     '/experience': { prerender: true },
     '/skills': { prerender: true },
     '/education': { prerender: true },
-    '/projects': { isr: 3600 }
+    '/projects': { isr: 604800 },
+    // Temporary
+    '/spotify': { isr: 600 }
   },
 
   compatibilityDate: '2025-01-15',
