@@ -1,43 +1,17 @@
-package main
+package handler
 
 import (
-	"go.uber.org/fx"
+	"net/http"
 
-	"github.com/athulanilthomas/www/api/internal/config"
-	"github.com/athulanilthomas/www/api/internal/github"
-	"github.com/athulanilthomas/www/api/internal/handler"
-	"github.com/athulanilthomas/www/api/internal/middleware"
-	"github.com/athulanilthomas/www/api/internal/server"
-	"github.com/athulanilthomas/www/api/internal/service"
-	"github.com/athulanilthomas/www/api/internal/spotify"
+	"github.com/athulanilthomas/www/api/router"
 )
 
-func main() {
-	fx.New(
-		fx.Provide(config.NewConfig),
+func Handler(w http.ResponseWriter, r *http.Request) {
+	router, err := router.BuildRouter()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-		fx.Provide(spotify.NewAuth),
-		fx.Provide(github.NewGithubToken),
-
-		fx.Provide(spotify.NewSpotifyClient),
-		fx.Provide(github.NewGithubClient),
-
-		fx.Provide(service.NewService),
-		fx.Provide(service.NewGithubService),
-
-		fx.Provide(handler.NewSpotifyHandler),
-		fx.Provide(handler.NewAuthHandler),
-		fx.Provide(handler.NewGithubHandler),
-		fx.Provide(handler.NewHealthHandler),
-
-		fx.Provide(middleware.NewRateLimitterMiddleware),
-		fx.Provide(middleware.NewAuthenticationMiddleware),
-		fx.Provide(middleware.NewMiddlewares),
-
-		fx.Provide(server.NewRouter),
-		fx.Provide(server.NewServer),
-
-		fx.Invoke(server.RegisterRoutes),
-		fx.Invoke(server.Start),
-	).Run()
+	router.ServeHTTP(w, r)
 }
