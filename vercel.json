@@ -2,7 +2,6 @@
   "services": {
     "ui": {
       "root": "apps/ui",
-      "framework": "nuxt",
       "installCommand": "pnpm install",
       "buildCommand": "pnpm build",
       "devCommand": "pnpm dev"
@@ -10,14 +9,15 @@
     "api": {
       "root": "apps/api",
       "runtime": "go",
+      "entrypoint": "./cmd/main.go",
       "installCommand": "go mod download",
-      "buildCommand": "go build -o main ./cmd/main.go",
-      "devCommand": "go run ./cmd/main.go"
+      "buildCommand": "go build -o main .",
+      "devCommand": "go run ."
     }
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/v1/(.*)",
       "destination": { "service": "api" }
     },
     {
