@@ -56,7 +56,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    apiBase: '/api/v1',
+    public: {
+      apiBase: ''
+    },
     apiSecret: '',
   },
 
