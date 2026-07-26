@@ -4,6 +4,10 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
 
+  content: {
+    experimental: { sqliteConnector: 'native' },
+  },
+
   experimental: {
     payloadExtraction: 'client',
   },
@@ -80,6 +84,7 @@ export default defineNuxtConfig({
     '/experience': { prerender: true },
     '/skills': { prerender: true },
     '/education': { prerender: true },
+    '/projects': { isr: 1 * 60 * 60 * 24 }, // 1 Day
   },
 
   compatibilityDate: '2025-01-15',
